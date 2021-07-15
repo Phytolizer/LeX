@@ -2,6 +2,8 @@
 #define LEX_NFA_H
 
 #include <bitset.h>
+#include <gc.h>
+#include <stdbool.h>
 #include <uthash.h>
 #include <vec.h>
 
@@ -27,10 +29,10 @@ typedef struct NFA
     edge_t edge;
     anchor_t anchor;
     bitset_t *characterClass;
+    bool inverted;
 } nfa_node_t;
 
 void NfaNodeInit(nfa_node_t *node);
-void NfaNodeDeinit(nfa_node_t *node);
 
 typedef vec_t(nfa_node_t *) vec_nfa_node_t;
 
@@ -42,7 +44,8 @@ typedef struct
 
 typedef struct
 {
-    const char *definition;
+    char *name;
+    char *definition;
     UT_hash_handle hh;
 } macro_t;
 

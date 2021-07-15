@@ -7,7 +7,7 @@ file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS "src/*.[ch]" "src/*.[ch]pp")
 add_executable(${PROJECT_NAME} ${SOURCES})
 
 add_subdirectory(cbitset)
-target_link_libraries(${PROJECT_NAME} PRIVATE cbitset)
+target_link_libraries(${PROJECT_NAME} PRIVATE cbitset gc)
 project(vec)
 add_library(vec "vec/src/vec.c")
 target_include_directories(vec PUBLIC "vec/src")
