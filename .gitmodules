@@ -6,4 +6,4 @@
 	url = https://github.com/rxi/vec.git
 [submodule "uthash"]
 	path = uthash
-	url = https://github.com/troydhanson/uthash.git
+	url = https://github.com/onContentStop/uthash.git
