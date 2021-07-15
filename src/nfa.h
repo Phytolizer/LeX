@@ -1,6 +1,9 @@
 #ifndef LEX_NFA_H
 #define LEX_NFA_H
 
+#define uthash_malloc(sz) GC_malloc(sz)
+#define uthash_free(ptr, sz)
+
 #include <bitset.h>
 #include <gc.h>
 #include <stdbool.h>
