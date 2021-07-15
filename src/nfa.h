@@ -2,6 +2,7 @@
 #define LEX_NFA_H
 
 #include <bitset.h>
+#include <gc.h>
 #include <stdbool.h>
 #include <uthash.h>
 #include <vec.h>

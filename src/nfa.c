@@ -86,18 +86,17 @@ void NfaNodeDeinit(nfa_node_t *node)
 nfa_t *ConstructNfa(const char *regex, size_t len, macro_t *macros)
 {
     regex_parser_state_t parserState = {
-        .input = NULL, .inputBuf = malloc(len), .lexeme = '\0', .macros = NULL};
+        .input = NULL, .inputBuf = GC_malloc(len), .lexeme = '\0', .macros = NULL};
     strncpy(parserState.inputBuf, regex, len);
     parserState.input = parserState.inputBuf;
     vec_init(&parserState.nodes);
     vec_init(&parserState.discardedNodes);
     parserState.inQuote = false;
     vec_init(&parserState.inputStack);
-    nfa_t *nfa = malloc(sizeof(nfa_t));
+    nfa_t *nfa = GC_malloc(sizeof(nfa_t));
     nfa->start = ThompsonConstruct(&parserState);
     nfa->nodes = parserState.nodes;
     vec_deinit(&parserState.discardedNodes);
-    free(parserState.inputBuf);
     return nfa;
 }
 
@@ -113,7 +112,7 @@ static size_t AllocateNfaNode(regex_parser_state_t *state)
         return vec_pop(&state->discardedNodes);
     }
 
-    nfa_node_t *node = malloc(sizeof(nfa_node_t));
+    nfa_node_t *node = GC_malloc(sizeof(nfa_node_t));
     NfaNodeInit(node);
     vec_push(&state->nodes, node);
     return state->nodes.length - 1;
@@ -262,7 +261,7 @@ static token_t Advance(regex_parser_state_t *state)
 #define ADD_TOKEN_MAP_ENTRY(k, t)                                                                  \
     do                                                                                             \
     {                                                                                              \
-        token_map_entry_t *entry = malloc(sizeof(token_map_entry_t));                              \
+        token_map_entry_t *entry = GC_malloc(sizeof(token_map_entry_t));                              \
         entry->key = k;                                                                            \
         entry->token = t;                                                                          \
         HASH_ADD(hh, sTokenMap, key, sizeof(char), entry);                                         \
