@@ -109,8 +109,9 @@ static size_t AllocateNfaNode(regex_parser_state_t *state)
 
     nfa_node_t *node = GC_malloc(sizeof(nfa_node_t));
     NfaNodeInit(node);
+    node->index = state->nodes.length;
     vec_push(&state->nodes, node);
-    return state->nodes.length - 1;
+    return node->index;
 }
 
 static void DiscardNfaNode(regex_parser_state_t *state, size_t node)
@@ -255,7 +256,7 @@ static token_t Advance(regex_parser_state_t *state)
 #define ADD_TOKEN_MAP_ENTRY(k, t)                                                                  \
     do                                                                                             \
     {                                                                                              \
-        token_map_entry_t *entry = GC_malloc(sizeof(token_map_entry_t));                              \
+        token_map_entry_t *entry = GC_malloc(sizeof(token_map_entry_t));                           \
         entry->key = k;                                                                            \
         entry->token = t;                                                                          \
         HASH_ADD(hh, sTokenMap, key, sizeof(char), entry);                                         \

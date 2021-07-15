@@ -33,6 +33,7 @@ typedef struct NFA
     anchor_t anchor;
     bitset_t *characterClass;
     bool inverted;
+    size_t index;
 } nfa_node_t;
 
 void NfaNodeInit(nfa_node_t *node);
