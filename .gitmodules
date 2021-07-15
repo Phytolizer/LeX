@@ -1,9 +1,9 @@
 [submodule "cbitset"]
 	path = cbitset
-	url = https://github.com/kylecoffey1999/cbitset.git
+	url = https://github.com/onContentStop/cbitset.git
 [submodule "vec"]
 	path = vec
-	url = https://github.com/rxi/vec.git
+	url = https://github.com/onContentStop/vec.git
 [submodule "uthash"]
 	path = uthash
 	url = https://github.com/onContentStop/uthash.git
