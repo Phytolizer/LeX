@@ -33,7 +33,6 @@ typedef struct NFA
 } nfa_node_t;
 
 void NfaNodeInit(nfa_node_t *node);
-void NfaNodeDeinit(nfa_node_t *node);
 
 typedef vec_t(nfa_node_t *) vec_nfa_node_t;
 

@@ -78,11 +78,6 @@ void NfaNodeInit(nfa_node_t *node)
     node->next[1] = NULL;
 }
 
-void NfaNodeDeinit(nfa_node_t *node)
-{
-    bitset_free(node->characterClass);
-}
-
 nfa_t *ConstructNfa(const char *regex, size_t len, macro_t *macros)
 {
     regex_parser_state_t parserState = {
@@ -121,7 +116,6 @@ static size_t AllocateNfaNode(regex_parser_state_t *state)
 static void DiscardNfaNode(regex_parser_state_t *state, size_t node)
 {
     vec_push(&state->discardedNodes, node);
-    NfaNodeDeinit(state->nodes.data[node]);
     NfaNodeInit(state->nodes.data[node]);
 }
 
