@@ -262,8 +262,10 @@ static token_t Advance(regex_parser_state_t *state)
 #define ADD_TOKEN_MAP_ENTRY(k, t)                                                                  \
     do                                                                                             \
     {                                                                                              \
-        token_map_entry_t entry = {.key = k, .token = t};                                          \
-        HASH_ADD(hh, sTokenMap, token, sizeof(char), &entry);                                      \
+        token_map_entry_t *entry = malloc(sizeof(token_map_entry_t));                              \
+        entry->key = k;                                                                            \
+        entry->token = t;                                                                          \
+        HASH_ADD(hh, sTokenMap, key, sizeof(char), entry);                                         \
     } while (0)
         ADD_TOKEN_MAP_ENTRY('{', TOK_LEFT_BRACE);
         ADD_TOKEN_MAP_ENTRY('}', TOK_RIGHT_BRACE);
