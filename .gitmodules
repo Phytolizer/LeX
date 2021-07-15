@@ -1,0 +1,9 @@
+[submodule "cbitset"]
+	path = cbitset
+	url = https://github.com/lemire/cbitset.git
+[submodule "vec"]
+	path = vec
+	url = https://github.com/rxi/vec.git
+[submodule "uthash"]
+	path = uthash
+	url = https://github.com/troydhanson/uthash.git
